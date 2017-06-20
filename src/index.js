@@ -34,7 +34,7 @@ ReactDOM.render(
     <Router history={history}>
       <div>
         <App/>
-        <div></div>
+        
       </div>
 
     </Router>
