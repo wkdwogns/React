@@ -12,7 +12,6 @@ import {  routerReducer, routerMiddleware } from 'react-router-redux'
 import reducers from './reducer/reducers' // Or wherever you keep your reducers
 
 import App from './App';
-import Home from './component/todolist/home';
 import './index.css';
 
 // Create a history of your choosing (we're using a browser history in this case)
@@ -30,27 +29,11 @@ const store = createStore(
   applyMiddleware(middleware)
 )
 
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-)
-
-const Topic = ({ match }) => (
-  <div>
-    <h3>Topic</h3>
-  </div>
-)
-
 ReactDOM.render(
 	<Provider store={store}>
     <Router history={history}>
       <div>
         <App/>
-
-        <Route exact path="/" component={Home}/>
-        <Route path="/about" component={About}/>
-        <Route path="/topics" component={Topic}/>
       </div>
     </Router>
   </Provider>

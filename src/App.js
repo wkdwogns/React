@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon, Row, Col, Card  } from 'antd';
-import {Link} from 'react-router-dom';
+import {Route,Link} from 'react-router-dom';
+import Home from './component/todolist/home';
 import Header from './component/header/header';
 import Footer from './component/footer/footer';
 import './App.css';
 
 const SubMenu = Menu.SubMenu;
 const { Sider, Content } = Layout;
+
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+)
+
+const Topic = ({ match }) => (
+  <div>
+    <h3>Topic</h3>
+  </div>
+)
 
 class App extends Component {
   state = {
@@ -30,9 +43,9 @@ class App extends Component {
               key="sub1"
               title={<span><Icon type="user" /><span className="nav-text">User</span></span>}
             >
-              <Menu.Item key="1">Tom</Menu.Item>
-              <Menu.Item key="2">Bill</Menu.Item>
-              <Menu.Item key="3">Alex</Menu.Item>
+              <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/about">About</Link></Menu.Item>
+              <Menu.Item key="3"><Link to="/topics">Topics</Link></Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub2"
@@ -80,14 +93,11 @@ class App extends Component {
               <p>Card content</p>
             </Card>
 
+            <Route exact path="/" component={Home}/>
+            <Route path="/about" component={About}/>
+            <Route path="/topics" component={Topic}/>
+
           </Content>
-
-
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/topics">Topics</Link></li>
-          </ul>
 
           <Footer />
 
