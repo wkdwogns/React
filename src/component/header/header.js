@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout,Icon } from 'antd';
+import { Layout } from 'antd';
 
 const { Header } = Layout;
 
@@ -10,13 +10,7 @@ class header extends Component {
 
     render() {
         return (
-          <Header style={{ background: '#fff', padding: 0 }} >
-            <Icon
-              className="trigger"
-              type={this.props.col ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.props.toggle}
-            />
-          </Header>
+          <Header style={{ background: '#fff', padding: 0 }} ></Header>
         );
     }
 

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon, Row, Col, Card  } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import {Route,Link} from 'react-router-dom';
 import Home from './component/todolist/home';
+import List from './component/todolist/list';
 import Header from './component/header/header';
 import Footer from './component/footer/footer';
 import './App.css';
 
 const SubMenu = Menu.SubMenu;
-const { Sider, Content } = Layout;
+const { Sider } = Layout;
 
 const About = () => (
   <div>
@@ -15,7 +16,7 @@ const About = () => (
   </div>
 )
 
-const Topic = ({ match }) => (
+const Topic = () => (
   <div>
     <h3>Topic</h3>
   </div>
@@ -36,7 +37,9 @@ class App extends Component {
     return (
       <Layout>
 
-        <Sider trigger={null} breakpoint="lg" collapsed={this.state.collapsed} onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
+        <Sider breakpoint="lg"
+                collapsedWidth="0"
+                onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <SubMenu
@@ -55,10 +58,7 @@ class App extends Component {
               <Menu.Item key="5">Team 2</Menu.Item>
             </SubMenu>
             <Menu.Item key="6">
-              <span>
-                <Icon type="file" />
-                <span className="nav-text">File</span>
-              </span>
+              <Link to="/list">List</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -66,38 +66,10 @@ class App extends Component {
         <Layout>
           <Header col={this.state.collapsed} toggle={this.toggle} />
 
-          <Content style={{ margin: '24px 16px', padding: 24, minHeight: 280 }}>
-
-            <Row gutter={12}>
-              <Col span={12}><div style={{ background: '#00A0E9'}}>col-12</div></Col>
-              <Col span={12}><div style={{ background: '#00A0E9'}}>col-12</div></Col>
-            </Row>
-
-            <Row gutter={32}>
-              <Col span={8}><div style={{ background: '#fff'}}>col-8</div></Col>
-              <Col span={8}><div style={{ background: '#fff'}}>col-8</div></Col>
-              <Col span={8}><div style={{ background: '#fff'}}>col-8</div></Col>
-            </Row>
-
-            <Row gutter={16}>
-              <Col span={6}><div style={{ background: '#00A0E9'}}>col-6</div></Col>
-              <Col span={6}><div style={{ background: '#00A0E9'}}>col-6</div></Col>
-              <Col span={6}><div style={{ background: '#00A0E9'}}>col-6</div></Col>
-              <Col span={6}><div style={{ background: '#00A0E9'}}>col-6</div></Col>
-            </Row>
-
-            <Card bordered={false} style={{ width: 300 }}>
-              <h3>Europe Street beat</h3>
-              <p>Card content</p>
-              <p>Card content</p>
-              <p>Card content</p>
-            </Card>
-
-            <Route exact path="/" component={Home}/>
-            <Route path="/about" component={About}/>
-            <Route path="/topics" component={Topic}/>
-
-          </Content>
+          <Route exact path="/" component={Home}/>
+          <Route path="/about" component={About}/>
+          <Route path="/topics" component={Topic}/>
+          <Route path="/list" component={List}/>
 
           <Footer />
 
