@@ -9,7 +9,7 @@ import createHistory from 'history/createBrowserHistory'
 
 import {  routerReducer, routerMiddleware } from 'react-router-redux'
 
-import reducers from './reducer/reducers' // Or wherever you keep your reducers
+import * as reducers from './reducer/reducers' // Or wherever you keep your reducers
 
 import App from './App';
 import './index.css';
@@ -32,11 +32,7 @@ const store = createStore(
 ReactDOM.render(
 	<Provider store={store}>
     <Router history={history}>
-      <div>
         <App/>
-        
-      </div>
-
     </Router>
   </Provider>
 	,
