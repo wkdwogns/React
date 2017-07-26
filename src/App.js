@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import {Route,Link} from 'react-router-dom';
+
 import Home from './component/todolist/home';
 import List from './component/todolist/list';
 import Header from './component/header/header';
 import Footer from './component/footer/footer';
+
+import UserInfo from './component/todolist/UserInfo';
+
 import './App.css';
 
 const SubMenu = Menu.SubMenu;
@@ -47,7 +51,7 @@ class App extends Component {
               title={<span><Icon type="user" /><span className="nav-text">User</span></span>}
             >
               <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
-              <Menu.Item key="2"><Link to="/about">About</Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/userInfo">UserInfo</Link></Menu.Item>
               <Menu.Item key="3"><Link to="/topics">Topics</Link></Menu.Item>
             </SubMenu>
             <SubMenu
@@ -67,7 +71,7 @@ class App extends Component {
           <Header col={this.state.collapsed} toggle={this.toggle} />
 
           <Route exact path="/" component={Home}/>
-          <Route path="/about" component={About}/>
+          <Route path="/userInfo" component={UserInfo}/>
           <Route path="/topics" component={Topic}/>
           <Route path="/list" component={List}/>
 
