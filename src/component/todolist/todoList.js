@@ -22,7 +22,6 @@ class TODOList extends Component {
 }
 
 const todolistStateToProps = (state) => {
-  console.log();
   return {
     todos: state.todos
   }
