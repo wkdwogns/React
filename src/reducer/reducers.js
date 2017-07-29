@@ -25,6 +25,7 @@ export function routerReducer(state = initialState, action) {
 }
 
 export function update(state = initialState, action) {
+  console.log("state");
   if(action.type === INCREASE) {
     return { number: state.number + action.amount }
   }

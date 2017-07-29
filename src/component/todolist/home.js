@@ -5,7 +5,7 @@ import { increase, decrease } from '../../action/action'
 class Home extends Component{
   render (){
     const {number, increase, decrease} = this.props;
-
+    console.log(this);
     return(
       <div>
         Some state changes:
