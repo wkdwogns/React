@@ -26,11 +26,13 @@ export function routerReducer(state = initialState, action) {
 }
 
 export function update(state = initialState, action) {
+
   if(action.type === 'LIST') {
     console.log(state);
     console.log(action);
     return { userlist : action.userlist , number: state.number }
   }
+
   if(action.type === INCREASE) {
     return { number: state.number + action.amount }
   }

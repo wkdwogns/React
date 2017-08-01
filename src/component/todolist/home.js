@@ -39,12 +39,17 @@ class Home extends Component{
   }
 
   render (){
+<<<<<<< HEAD
     const {userlist, number, increase, decrease} = this.props;
 
     const listItems = userlist.map((user) =>
       <li key={user._id}>{user.id}</li>
     );
 
+=======
+    const {number, increase, decrease} = this.props;
+    console.log(this);
+>>>>>>> 482263d07fb87a6ccf7e2e1b5d7fc35546ab1d24
     return(
       <div>
         Some state changes:
