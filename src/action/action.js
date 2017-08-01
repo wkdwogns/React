@@ -14,3 +14,27 @@ export function decrease(n) {
     amount: n
   }
 }
+
+export function list(n,data) {
+
+  return (dispatch) => {
+    fetch('http://localhost:3000/users')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+        dispatch(add(data))
+    });
+  }
+
+
+}
+
+function add(data) {
+  return {
+    type: 'LIST',
+    userlist: data,
+    amount: 1,
+    data
+  }
+}

@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-import { Router } from 'react-router-dom'
-import createHistory from 'history/createBrowserHistory'
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import thunk from "redux-thunk";
 
 
 import {  routerReducer, routerMiddleware } from 'react-router-redux'
@@ -26,7 +27,7 @@ const store = createStore(
     ...reducers,
     routing: routerReducer
   }),
-  applyMiddleware(middleware)
+  applyMiddleware(thunk,middleware)
 )
 
 ReactDOM.render(
