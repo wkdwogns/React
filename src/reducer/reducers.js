@@ -32,6 +32,7 @@ export function update(state = initialState, action) {
   }
 
   if(action.type === INCREASE) {
+    console.log("reducer");
     return { number: state.number + action.amount, userlist : state.userlist }
   }
 

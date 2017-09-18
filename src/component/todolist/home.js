@@ -8,39 +8,39 @@ class Home extends Component{
     console.log("constructor");
   }
 
-  componentWillMount(){
-    console.log("componentWillMount");
-  }
-
-  componentDidMount(){
-    console.log("componentDidMount");
-    this.props.list(1);
-  }
-
-  componentWillReceiveProps(nextProps){
-    console.log("componentWillReceiveProps: " + JSON.stringify(nextProps));
-  }
-
-  shouldComponentUpdate(nextProps, nextState){
-    console.log("shouldComponentUpdate: " + JSON.stringify(nextProps) + " " + JSON.stringify(nextState));
-    return true;
-  }
-
-  componentWillUpdate(nextProps, nextState){
-    console.log("componentWillUpdate: " + JSON.stringify(nextProps) + " " + JSON.stringify(nextState));
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    console.log("componentDidUpdate: " + JSON.stringify(prevProps) + " " + JSON.stringify(prevState));
-  }
-
-  componentWillUnmount(){
-    console.log("componentWillUnmount");
-  }
+  // componentWillMount(){
+  //   console.log("componentWillMount");
+  // }
+  //
+  // componentDidMount(){
+  //   console.log("componentDidMount");
+  //   this.props.list(1);
+  // }
+  //
+  // componentWillReceiveProps(nextProps){
+  //   console.log("componentWillReceiveProps: " + JSON.stringify(nextProps));
+  // }
+  //
+  // shouldComponentUpdate(nextProps, nextState){
+  //   console.log("shouldComponentUpdate: " + JSON.stringify(nextProps) + " " + JSON.stringify(nextState));
+  //   return true;
+  // }
+  //
+  // componentWillUpdate(nextProps, nextState){
+  //   console.log("componentWillUpdate: " + JSON.stringify(nextProps) + " " + JSON.stringify(nextState));
+  // }
+  //
+  // componentDidUpdate(prevProps, prevState){
+  //   console.log("componentDidUpdate: " + JSON.stringify(prevProps) + " " + JSON.stringify(prevState));
+  // }
+  //
+  // componentWillUnmount(){
+  //   console.log("componentWillUnmount");
+  // }
 
   render (){
 
-    const {userlist, number, increase, decrease} = this.props;
+    const {userlist, number, increase, decrease, list} = this.props;
     const listItems = userlist.map((user) =>
       <li key={user._id}>{user.id}</li>
     );
@@ -49,7 +49,7 @@ class Home extends Component{
       <div>
         Some state changes:
         {number}
-        <button onClick={() => increase(1)}>Increase</button>
+        <button onClick={() => list(1) }>Increase</button>
         <button onClick={() => decrease(1)}>Decrease</button>
         <br/>
         <ul>{listItems}</ul>
@@ -60,6 +60,16 @@ class Home extends Component{
 }
 
 export default connect(
-  state => ( {number: state.update.number,userlist:state.update.userlist }),
-  { increase, decrease, list }
+  state => {
+    console.log("state");
+    return ( {number: state.update.number,userlist:state.update.userlist }) }
+  ,
+  dispatch => {
+    console.log(list);
+    return {
+      increase,
+      decrease,
+      list : (n)=> dispatch(list(n))
+    }
+  }
 )(Home)

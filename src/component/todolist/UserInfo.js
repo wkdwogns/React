@@ -61,6 +61,8 @@ class UserInfo extends Component{
 }
 
 export default connect(
-  state => ( {number: state.update.number }),
+  state => {
+    console.log(state);
+    return ({number: state.update.number }) },
   {  }
 )(UserInfo)
