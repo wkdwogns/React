@@ -8,17 +8,18 @@ import Header from './component/header/header';
 import Footer from './component/footer/footer';
 
 import UserInfo from './component/todolist/UserInfo';
+import UserUpdate from './component/todolist/UserUpdate';
 
 import './App.css';
 
 const SubMenu = Menu.SubMenu;
 const { Sider } = Layout;
 
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-)
+// const About = () => (
+//   <div>
+//     <h2>About</h2>
+//   </div>
+// )
 
 const Topic = () => (
   <div>
@@ -74,6 +75,7 @@ class App extends Component {
           <Route path="/userInfo" component={UserInfo}/>
           <Route path="/topics" component={Topic}/>
           <Route path="/list" component={List}/>
+          <Route path="/UserUpdate" component={UserUpdate}/>
 
           <Footer />
 

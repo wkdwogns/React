@@ -48,9 +48,10 @@ class Home extends Component{
     return(
       <div>
         Some state changes:
-        {number}
-        <button onClick={() => list(1) }>Increase</button>
+        {number}<br/>
+        <button onClick={() => increase(1) }>Increase</button>
         <button onClick={() => decrease(1)}>Decrease</button>
+        <button onClick={() => list(1)}>list</button>
         <br/>
         <ul>{listItems}</ul>
       </div>
@@ -65,10 +66,9 @@ export default connect(
     return ( {number: state.update.number,userlist:state.update.userlist }) }
   ,
   dispatch => {
-    console.log(list);
     return {
-      increase,
-      decrease,
+      increase : (n) => dispatch(increase(n)),
+      decrease : (n) => dispatch(decrease(n)),
       list : (n)=> dispatch(list(n))
     }
   }

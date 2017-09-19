@@ -19,14 +19,19 @@ export function decrease(n) {
 export function list(n) {
   console.log(n);
   return (dispatch) => {
-    console.log("list2");
+
     fetch('http://localhost:3000/users')
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
         console.log(data);
-        dispatch(add(data))
+        dispatch( {
+          type: 'LIST',
+          userlist: data,
+          amount: 1,
+          data
+        })
     });
 
   };
@@ -34,12 +39,12 @@ export function list(n) {
 
 }
 
-function add(data) {
-  console.log("add");
-  return {
-    type: 'LIST',
-    userlist: data,
-    amount: 1,
-    data
-  }
-}
+// function add(data) {
+//   console.log("add");
+//   return {
+//     type: 'LIST',
+//     userlist: data,
+//     amount: 1,
+//     data
+//   }
+// }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Layout,Table } from 'antd';
+import { Layout,Table,Button } from 'antd';
+import {Link} from 'react-router-dom';
 
 const { Content } = Layout;
 
@@ -52,6 +53,7 @@ class UserInfo extends Component{
 
     return(
       <Content style={{ margin: '125px 100px', padding: 25, minHeight: 280,background: '#fff' }}>
+          <Link to="/UserUpdate"><Button type="primary">UserUpdate</Button></Link>
           <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
       </Content>
 
