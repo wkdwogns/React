@@ -41,8 +41,8 @@ class Home extends Component{
   render (){
 
     const {userlist, number, increase, decrease, list} = this.props;
-    const listItems = userlist.map((user) =>
-      <li key={user._id}>{user.id}</li>
+    const listItems = userlist.map((user,c) =>
+      <li key={user._id}>{c+' '+user.userid}</li>
     );
 
     return(

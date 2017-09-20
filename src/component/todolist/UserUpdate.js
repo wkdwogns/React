@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Form, Input, Select,Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { update } from '../../action/action'
 
 const FormItem = Form.Item;

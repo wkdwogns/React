@@ -1,47 +1,31 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Layout,Table,Button } from 'antd';
 import {Link} from 'react-router-dom';
+import { list } from '../../action/action';
 
 const { Content } = Layout;
 
 const columns = [{
   title: 'Name',
   dataIndex: 'name',
-  render: text => <a href="#">{text}</a>,
+  key: '_id',
+  render: (text,record) => <Link to="/UserUpdate">{text}</Link>
 }, {
-  title: 'Age',
-  dataIndex: 'age',
+  title: 'Id',
+  dataIndex: 'userid'
 }, {
-  title: 'Address',
-  dataIndex: 'address',
-}];
-const data = [{
-  key: '1',
-  name: 'John Brown',
-  age: 32,
-  address: 'New York No. 1 Lake Park',
+  title: 'Phone',
+  dataIndex: 'phone'
 }, {
-  key: '2',
-  name: 'Jim Green',
-  age: 42,
-  address: 'London No. 1 Lake Park',
-}, {
-  key: '3',
-  name: 'Joe Black',
-  age: 32,
-  address: 'Sidney No. 1 Lake Park',
-}, {
-  key: '4',
-  name: 'Disabled User',
-  age: 99,
-  address: 'Sidney No. 1 Lake Park',
+  title: 'E-mail',
+  dataIndex: 'email'
 }];
 
 // rowSelection object indicates the need for row selection
 const rowSelection = {
   onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    console.log('selectedRowKeys: ${selectedRowKeys}', 'selectedRows: ', selectedRows);
   },
   getCheckboxProps: record => ({
     disabled: record.name === 'Disabled User',    // Column configuration not to be checked
@@ -49,14 +33,19 @@ const rowSelection = {
 };
 
 class UserInfo extends Component{
+
+  componentDidMount(){
+    this.props.list(1);
+  }
+
   render (){
+    const {userlist} = this.props;
 
     return(
       <Content style={{ margin: '125px 100px', padding: 25, minHeight: 280,background: '#fff' }}>
           <Link to="/UserUpdate"><Button type="primary">UserUpdate</Button></Link>
-          <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+          <Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={userlist} />
       </Content>
-
     );
 
   }
@@ -64,7 +53,11 @@ class UserInfo extends Component{
 
 export default connect(
   state => {
-    console.log(state);
-    return ({number: state.update.number }) },
-  {  }
+    return ({userlist:state.update.userlist })
+  },
+  dispatch => {
+    return {
+      list : (n)=> dispatch(list(n))
+    }
+  }
 )(UserInfo)

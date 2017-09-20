@@ -20,18 +20,19 @@ export function list(n) {
   console.log(n);
   return (dispatch) => {
 
-    fetch('http://localhost:3000/users')
+    fetch('http://localhost:3001/users')
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
-        console.log(data);
+
         dispatch( {
           type: 'LIST',
           userlist: data,
           amount: 1,
           data
-        })
+        });
+        
     });
   };
 }
@@ -40,7 +41,7 @@ export function update(obj) {
   console.log(obj);
   return (dispatch) => {
 
-    fetch('http://localhost:3000/users/write',{
+    fetch('http://localhost:3001/users/write',{
       method: 'post',
       headers: {
         'Accept' : 'application/json',
