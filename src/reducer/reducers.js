@@ -9,7 +9,7 @@ const DECREASE = 'DECREASE'
 const initialState = {
   locationBeforeTransitions: null,
   number: 1,
-  userlist : []
+  list : []
 }
 
 /**
@@ -25,19 +25,33 @@ export function routerReducer(state = initialState, action) {
   return state
 }
 
-export function update(state = initialState, action) {
+export function list(state = initialState, action) {
 
   if(action.type === 'LIST') {
-    return { userlist : action.userlist , number: state.number }
+    return { list : action.list , number: state.number }
   }
+
+  return state
+}
+
+export function show(state = initialState, action) {
+
+  if(action.type === 'SHOW') {
+    return { info : action.info , number: state.number }
+  }
+
+  return state
+}
+
+export function update(state = initialState, action) {
 
   if(action.type === INCREASE) {
     console.log("reducer");
-    return { number: state.number + action.amount, userlist : state.userlist }
+    return { number: state.number + action.amount, list : state.list }
   }
 
   if(action.type === DECREASE) {
-    return { number: state.number - action.amount, userlist : state.userlist }
+    return { number: state.number - action.amount, list : state.list }
   }
 
   return state

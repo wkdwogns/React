@@ -3,11 +3,11 @@ import { Layout, Menu, Icon } from 'antd';
 import {Route,Link} from 'react-router-dom';
 
 import Home from './component/todolist/home';
-import List from './component/todolist/list';
+import List2 from './component/todolist/list';
 import Header from './component/header/header';
 import Footer from './component/footer/footer';
 
-import UserInfo from './component/todolist/UserInfo';
+import List from './component/list/list';
 import UserUpdate from './component/todolist/UserUpdate';
 
 import './App.css';
@@ -43,18 +43,20 @@ class App extends Component {
       <Layout>
 
         <Sider breakpoint="lg"
-                collapsedWidth="0"
-                onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
+               collapsedWidth="0"
+               onCollapse={(collapsed, type) => { console.log(collapsed, type); }}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+
             <SubMenu
               key="sub1"
               title={<span><Icon type="user" /><span className="nav-text">User</span></span>}
             >
               <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
-              <Menu.Item key="2"><Link to="/userInfo">UserInfo</Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/users">UserInfo</Link></Menu.Item>
               <Menu.Item key="3"><Link to="/topics">Topics</Link></Menu.Item>
             </SubMenu>
+
             <SubMenu
               key="sub2"
               title={<span><Icon type="team" /><span className="nav-text">Team</span></span>}
@@ -62,9 +64,11 @@ class App extends Component {
               <Menu.Item key="4">Team 1</Menu.Item>
               <Menu.Item key="5">Team 2</Menu.Item>
             </SubMenu>
+
             <Menu.Item key="6">
-              <Link to="/list">List</Link>
+              {/* <Link to="/list2">List</Link> */}
             </Menu.Item>
+
           </Menu>
         </Sider>
 
@@ -72,10 +76,10 @@ class App extends Component {
           <Header col={this.state.collapsed} toggle={this.toggle} />
 
           <Route exact path="/" component={Home}/>
-          <Route path="/userInfo" component={UserInfo}/>
+          <Route path="/users" component={List}/>
           <Route path="/topics" component={Topic}/>
-          <Route path="/list" component={List}/>
-          <Route path="/UserUpdate" component={UserUpdate}/>
+          {/* <Route path="/list2" component={List2}/> */}
+          <Route path="/UserUpdate/" component={UserUpdate}/>
 
           <Footer />
 

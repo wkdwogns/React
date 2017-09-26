@@ -63,7 +63,7 @@ class Home extends Component{
 export default connect(
   state => {
     console.log("state");
-    return ( {number: state.update.number,userlist:state.update.userlist }) }
+    return ( {number: state.update.number,userlist:state.update.list }) }
   ,
   dispatch => {
     return {

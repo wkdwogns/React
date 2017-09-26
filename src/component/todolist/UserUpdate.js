@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, Input, Button } from 'antd';
-import { update } from '../../action/action'
+import { show,update } from '../../action/action'
 
 const FormItem = Form.Item;
 
 class UserUpdate extends Component{
+
+  componentDidMount(){
+
+    if( this.props.location.state != null && this.props.location.state.id !=null){
+      this.props.show('/users/show',{'id':this.props.location.state.id});
+    }
+
+  }
 
   handleSubmit = () => {
 
@@ -18,7 +26,13 @@ class UserUpdate extends Component{
   }
 
   render (){
+
     const { getFieldDecorator } = this.props.form;
+
+    let info = {};
+    if(this.props.info!=null){
+      info = this.props.info;
+    }
 
     const formItemLayout = {
       labelCol: {
@@ -45,10 +59,11 @@ class UserUpdate extends Component{
     };
 
     return(
+
       <Form>
 
         <FormItem {...formItemLayout} label="ID" hasFeedback >
-          {getFieldDecorator('id', {
+          {getFieldDecorator('id',{ initialValue: info.userid ,
           rules: [{ required: true, message: 'Please input your ID!', whitespace: true }],
           })(
             <Input />
@@ -75,7 +90,7 @@ class UserUpdate extends Component{
           label="Name"
           hasFeedback
         >
-          {getFieldDecorator('name', {
+          {getFieldDecorator('name', {initialValue: info.name ,
           rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
           })(
             <Input />
@@ -86,7 +101,7 @@ class UserUpdate extends Component{
           {...formItemLayout}
           label="Phone Number"
         >
-          {getFieldDecorator('phone', {
+          {getFieldDecorator('phone', {initialValue: info.phone ,
             rules: [{ required: true, message: 'Please input your phone number!' }],
           })(
             <Input style={{ width: '100%' }} />
@@ -98,7 +113,7 @@ class UserUpdate extends Component{
           label="E-mail"
           hasFeedback
         >
-          {getFieldDecorator('email', {
+          {getFieldDecorator('email', {initialValue: info.email ,
           rules: [{type: 'email', message: 'The input is not valid E-mail!'},
             {required: true, message: 'Please input your E-mail!'}],
         })(
@@ -120,11 +135,13 @@ class UserUpdate extends Component{
 const WrappedRegistrationForm = Form.create()(UserUpdate);
 
 export default connect(
-  state => {
-    return ({number: state.update.number }) },
+    state => {
+      return ({info: state.show.info })
+    },
     dispatch => {
       return {
-        update : (obj) => dispatch(update(obj))
+        update : (obj) => dispatch(update(obj)),
+        show : (path,obj) => dispatch(show(path,obj))
       }
     }
 )(WrappedRegistrationForm)
