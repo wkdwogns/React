@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Layout,Table,Button } from 'antd';
+import { Layout,Row, Table,Button } from 'antd';
 import {Link} from 'react-router-dom';
 import { list } from '../../action/action';
 
@@ -10,7 +10,7 @@ const columns = [{
   title: 'Name',
   dataIndex: 'name',
   key: '_id',
-  render: (text,record) => <Link to={{ pathname : "/UserUpdate" , state: { "id": record._id }  }}>{text}</Link>
+  render: (text,record) => <Link to={{ pathname : "/UserUpdate" , state: { "id": record._id }  }}>{ text?text:'이름없음' }</Link>
 }, {
   title: 'Id',
   dataIndex: 'userid'
@@ -41,7 +41,7 @@ class List extends Component{
 
     return(
       <Content style={{ margin: '125px 100px', padding: 25, minHeight: 280,background: '#fff' }}>
-          <Link to="/UserUpdate"><Button type="primary">UserUpdate</Button></Link>
+          <Link to="/UserUpdate"><Button type="primary" style={{marginBottom : '10px'}}>UserUpdate</Button></Link>
           <Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={ listInfo } />
       </Content>
     );

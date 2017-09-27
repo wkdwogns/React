@@ -52,9 +52,8 @@ class App extends Component {
               key="sub1"
               title={<span><Icon type="user" /><span className="nav-text">User</span></span>}
             >
-              <Menu.Item key="1"><Link to="/">Home</Link></Menu.Item>
-              <Menu.Item key="2"><Link to="/users">UserInfo</Link></Menu.Item>
-              <Menu.Item key="3"><Link to="/topics">Topics</Link></Menu.Item>
+              <Menu.Item key="1"><Link to="/users">UserInfo</Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/topics">Topics</Link></Menu.Item>
             </SubMenu>
 
             <SubMenu
@@ -75,10 +74,8 @@ class App extends Component {
         <Layout>
           <Header col={this.state.collapsed} toggle={this.toggle} />
 
-          <Route exact path="/" component={Home}/>
-          <Route path="/users" component={List}/>
+          <Route exact path="/users" component={List}/>
           <Route path="/topics" component={Topic}/>
-          {/* <Route path="/list2" component={List2}/> */}
           <Route path="/UserUpdate/" component={UserUpdate}/>
 
           <Footer />

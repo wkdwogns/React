@@ -32,11 +32,11 @@ export function list(path) {
   };
 }
 
-export function update(obj) {
-
+export function update(path,obj) {
+  
   return (dispatch) => {
 
-    fetch('http://localhost:3001/users/write',{
+    fetch('http://localhost:3001'+path,{
       method: 'post',
       headers: {
         'Accept' : 'application/json',
