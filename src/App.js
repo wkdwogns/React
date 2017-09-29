@@ -79,7 +79,6 @@ class App extends Component {
           <Route path="/UserUpdate/" component={UserUpdate}/>
 
           <Footer />
-
         </Layout>
       </Layout>
     );

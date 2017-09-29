@@ -10,7 +10,7 @@ const columns = [{
   title: 'Name',
   dataIndex: 'name',
   key: '_id',
-  render: (text,record) => <Link to={{ pathname : "/UserUpdate" , state: { "id": record._id }  }}>{ text?text:'이름없음' }</Link>
+  render:(text,record) => <Link to={{ pathname : "/UserUpdate" , state: { "id": record._id }  }}>{ text?text:'이름없음' }</Link>
 }, {
   title: 'Id',
   dataIndex: 'userid'
@@ -32,17 +32,37 @@ const rowSelection = {
 
 class List extends Component{
 
+  handleTableChange(pagination, filters, sorter){
+    //const pager = { ...this.state.pagination };
+    //pager.current = pagination.current;
+    console.log(pagination);
+    console.log(filters);
+    console.log(sorter);
+    // let obj = {
+    //   results: pagination.pageSize,
+    //   page: pagination.current,
+    //   sortField: sorter.field,
+    //   sortOrder: sorter.order
+    // };
+    //
+    // this.props.list(this.props.match.path,obj);
+  }
+
+  getList(obj={}){
+    this.props.list(this.props.match.path,obj);
+  }
+
   componentDidMount(){
-    this.props.list(this.props.match.path);
+    this.getList();
   }
 
   render (){
-    const { listInfo } = this.props;
+    const { listInfo,pagination,loading } = this.props;
 
     return(
       <Content style={{ margin: '125px 100px', padding: 25, minHeight: 280,background: '#fff' }}>
           <Link to="/UserUpdate"><Button type="primary" style={{marginBottom : '10px'}}>UserUpdate</Button></Link>
-          <Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={ listInfo } />
+          <Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={listInfo} pagination={pagination} loading={loading} onChange={this.handleTableChange}/>
       </Content>
     );
 
@@ -51,11 +71,12 @@ class List extends Component{
 
 export default connect(
   state => {
-    return ({ listInfo : state.list.list })
+    console.log(state.list);
+    return ({ listInfo : state.list.list, pagination : state.list.pagination,loading : state.list.loading })
   },
   dispatch => {
     return {
-      list : (n)=> dispatch(list(n))
+      list : (path,obj)=> dispatch(list(path,obj))
     }
   }
 )(List)

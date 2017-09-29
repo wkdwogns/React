@@ -15,11 +15,18 @@ export function decrease(n) {
   }
 }
 
-export function list(path) {
+export function list(path,obj) {
 
   return (dispatch) => {
 
-    fetch('http://localhost:3001'+path)
+    fetch('http://localhost:3001'+path,{
+      method: 'post',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json',
+      },
+      body: JSON.stringify(obj)
+    })
     .then(function(response) {
       return response.json();
     })
@@ -33,7 +40,7 @@ export function list(path) {
 }
 
 export function update(path,obj) {
-  
+
   return (dispatch) => {
 
     fetch('http://localhost:3001'+path,{
@@ -79,13 +86,3 @@ export function show(path,obj) {
     });
   };
 }
-
-// function add(data) {
-//   console.log("add");
-//   return {
-//     type: 'LIST',
-//     userlist: data,
-//     amount: 1,
-//     data
-//   }
-// }

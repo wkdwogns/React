@@ -9,7 +9,9 @@ const DECREASE = 'DECREASE'
 const initialState = {
   locationBeforeTransitions: null,
   number: 1,
-  list : []
+  list : [],
+  page : 1,
+  pageTotal : 0
 }
 
 /**
@@ -28,7 +30,7 @@ export function routerReducer(state = initialState, action) {
 export function list(state = initialState, action) {
 
   if(action.type === 'LIST') {
-    return { list : action.list , number: state.number }
+    return { list : action.list , pagination :{ current : state.page , total : state.pageTotal }  }
   }
 
   return state
